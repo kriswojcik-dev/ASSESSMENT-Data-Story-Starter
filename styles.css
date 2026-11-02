@@ -1,0 +1,645 @@
+
+/* ========================================
+   JAPAN'S LONG LIFE — DATA STORY
+   Module 1 Design System Extension
+   Based on SpicyMisoPhoto
+======================================== */
+
+
+/* ========================================
+   S1 — SELECTIVE CSS RESET
+======================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+img,
+picture,
+video,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+p,
+li {
+  overflow-wrap: break-word;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: var(--space-1);
+}
+
+
+/* ========================================
+   S2 — MODULE 1 DESIGN TOKENS
+======================================== */
+
+:root {
+
+  /* Brand Colors */
+  --color-forest: #203D32;
+  --color-moss: #526B4E;
+  --color-sage: #A8B9A0;
+  --color-cream: #F5F1E7;
+  --color-earth: #80674F;
+
+  /* Neutral Colors */
+  --color-white: #FFFFFF;
+  --color-charcoal: #252B27;
+
+  /* Semantic Colors */
+  --color-background: var(--color-cream);
+  --color-surface: var(--color-white);
+  --color-text: var(--color-charcoal);
+  --color-heading: var(--color-forest);
+  --color-border: var(--color-sage);
+  --color-control-border: var(--color-moss);
+  --color-action: var(--color-forest);
+  --color-action-text: var(--color-white);
+  --color-focus: var(--color-moss);
+
+  /* Interactive State Tokens */
+  --color-action-hover: var(--color-moss);
+  --color-action-hover-text: var(--color-white);
+  --color-action-active: var(--color-earth);
+  --color-secondary-hover: var(--color-sage);
+
+  /* Additional Semantic Tokens */
+  --color-secondary-hover-text: var(--color-forest);
+  --color-action-active-text: var(--color-white);
+  --color-link-hover: var(--color-moss);
+  --color-link-active: var(--color-earth);
+  --color-muted-text: var(--color-moss);
+  --color-media-background: var(--color-moss);
+  --color-media-text: var(--color-white);
+  --color-notice-accent: var(--color-moss);
+
+  /* Spacing — 4px Base Scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* Sizing and Measure */
+  --size-container: 75rem;
+  --size-reading: 80ch;
+  --size-card-min: 16rem;
+  --size-control-min: 2.75rem;
+
+  /* Border Radius */
+  --radius-none: 0;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-full: 9999px;
+
+  /* Elevation */
+  --shadow-none: none;
+  --shadow-sm: 0 2px 6px rgba(32, 61, 50, 0.08);
+  --shadow-md: 0 4px 12px rgba(32, 61, 50, 0.12);
+  --shadow-lg: 0 8px 24px rgba(32, 61, 50, 0.16);
+
+  /* Font Families */
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Inter", Arial, sans-serif;
+
+  /* Font Sizes */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5rem;
+  --text-heading: clamp(1.75rem, 3vw, 2.5rem);
+  --text-display: clamp(2.5rem, 5vw, 4rem);
+
+  /* Font Weights */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* Line Heights */
+  --leading-tight: 1.2;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.7;
+}
+
+
+/* ========================================
+   S3 — BASE TYPOGRAPHY
+======================================== */
+
+body {
+  color: var(--color-text);
+  background-color: var(--color-background);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  color: var(--color-heading);
+  line-height: var(--leading-tight);
+}
+
+h1 {
+  font-size: var(--text-display);
+}
+
+h2 {
+  font-size: var(--text-heading);
+  margin-top: 0;
+  margin-bottom: var(--space-6);
+}
+
+h3 {
+  font-size: var(--text-xl);
+  margin-top: var(--space-8);
+  margin-bottom: var(--space-3);
+}
+
+p {
+  max-width: var(--size-reading);
+  margin-top: 0;
+  margin-bottom: var(--space-4);
+}
+
+a {
+  color: var(--color-action);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: var(--color-link-hover);
+}
+
+a:active {
+  color: var(--color-link-active);
+}
+
+
+/* ========================================
+   S4 — EDITORIAL HEADER
+======================================== */
+
+.story-header {
+  padding: clamp(2rem, 6vw, 5rem) var(--space-6);
+  background-color: var(--color-forest);
+  color: var(--color-cream);
+}
+
+.header-content {
+  max-width: var(--size-container);
+  margin-inline: auto;
+}
+
+.story-header h1 {
+  color: var(--color-cream);
+  font-size: clamp(3.25rem, 8vw, 6rem);
+  margin-block: var(--space-4);
+}
+
+.eyebrow,
+.section-label {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  color: var(--color-cream);
+}
+
+.story-subtitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  line-height: var(--leading-tight);
+  color: var(--color-cream);
+  max-width: 28ch;
+  margin-bottom: var(--space-8);
+}
+
+.lede {
+  max-width: var(--size-reading);
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--color-cream);
+}
+
+
+/* ========================================
+   S5 — MAIN CONTENT & SECTIONS
+======================================== */
+
+main {
+  width: min(
+    calc(100% - 2 * var(--space-4)),
+    var(--size-container)
+  );
+  margin-inline: auto;
+  padding-block: var(--space-8);
+}
+
+section {
+  padding-block: var(--space-12);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.section-label {
+  color: var(--color-moss);
+  margin-bottom: var(--space-3);
+}
+
+.section-intro {
+  font-size: var(--text-lg);
+  max-width: var(--size-reading);
+  margin-bottom: var(--space-8);
+}
+
+strong {
+  font-weight: var(--weight-bold);
+}
+
+
+/* ========================================
+   D2 — EDITORIAL FIGURES
+======================================== */
+
+.story-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, 22rem), 1fr)
+  );
+  gap: var(--space-6);
+}
+
+figure {
+  margin: 0;
+}
+
+.figure-card,
+.trend-figure {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-sm);
+}
+
+.figure-art {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+}
+
+figcaption {
+  margin-top: var(--space-4);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--color-text);
+}
+
+.credit {
+  display: block;
+  margin-top: var(--space-3);
+  font-size: var(--text-xs);
+  color: var(--color-muted-text);
+}
+
+
+/* ========================================
+   D2 — SVG FIGURE STYLING
+======================================== */
+
+.art-surface,
+.graphic-surface {
+  fill: var(--color-cream);
+}
+
+.rise-baseline {
+  fill: none;
+  stroke: var(--color-sage);
+  stroke-width: 3;
+}
+
+.rise-line {
+  fill: none;
+  stroke: var(--color-forest);
+  stroke-width: 10;
+  stroke-linecap: round;
+}
+
+.rise-point {
+  fill: var(--color-sage);
+  stroke: var(--color-forest);
+  stroke-width: 5;
+}
+
+.year-card {
+  fill: var(--color-white);
+  stroke: var(--color-sage);
+  stroke-width: 2;
+}
+
+.art-label {
+  fill: var(--color-forest);
+  font: 700 26px var(--font-body);
+}
+
+.art-value {
+  fill: var(--color-forest);
+  font: 700 60px var(--font-display);
+}
+
+.increase-badge {
+  fill: var(--color-forest);
+}
+
+.badge-label {
+  fill: var(--color-white);
+  font: 700 22px var(--font-body);
+}
+
+.bar-primary {
+  fill: var(--color-forest);
+}
+
+.bar-muted {
+  fill: var(--color-moss);
+}
+
+.bar-value {
+  fill: var(--color-forest);
+  font: 700 26px var(--font-body);
+}
+
+
+/* ========================================
+   D3 — ACCESSIBLE DATA TABLE
+======================================== */
+
+.table-instructions {
+  font-size: var(--text-sm);
+  color: var(--color-muted-text);
+}
+
+.table-region {
+  max-width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+}
+
+.table-region:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+table {
+  width: 100%;
+  min-width: 46rem;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+caption {
+  padding: var(--space-4);
+  text-align: left;
+  font-size: var(--text-base);
+  font-weight: var(--weight-bold);
+  color: var(--color-heading);
+}
+
+thead {
+  background-color: var(--color-forest);
+  color: var(--color-white);
+}
+
+th,
+td {
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  text-align: left;
+  vertical-align: middle;
+}
+
+thead th {
+  color: var(--color-white);
+}
+
+tbody th {
+  color: var(--color-heading);
+  font-weight: var(--weight-semibold);
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--color-cream);
+}
+
+tbody tr:hover {
+  background-color: #E5EBDD;
+}
+
+
+/* ========================================
+   D4 — RESPONSIVE SVG
+======================================== */
+
+.trend-figure {
+  margin-top: var(--space-6);
+}
+
+.story-graphic {
+  width: 100%;
+  height: auto;
+}
+
+.grid-line {
+  fill: none;
+  stroke: var(--color-sage);
+  stroke-width: 2;
+}
+
+.graphic-line {
+  fill: none;
+  stroke: var(--color-forest);
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.point {
+  fill: var(--color-sage);
+  stroke: var(--color-forest);
+  stroke-width: 4;
+}
+
+.story-graphic text {
+  fill: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 18px;
+}
+
+.story-graphic .chart-value {
+  font-weight: var(--weight-bold);
+  font-size: 22px;
+}
+
+
+/* ========================================
+   D4 — WORLD BANK EMBED
+======================================== */
+
+.embed-card {
+  margin-top: var(--space-8);
+  padding: var(--space-6);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.embed-card h3 {
+  margin-top: 0;
+}
+
+.embed-frame {
+  width: 100%;
+  max-width: 900px;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.embed-frame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+
+/* ========================================
+   D5–D6 — DATA NOTES & DOCUMENTATION
+======================================== */
+
+.data-note {
+  max-width: var(--size-reading);
+  margin-top: var(--space-6);
+  padding: var(--space-4);
+  background-color: var(--color-surface);
+  border-left: 4px solid var(--color-moss);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+.data-note a {
+  overflow-wrap: anywhere;
+}
+
+
+/* ========================================
+   FOOTER
+======================================== */
+
+.site-footer {
+  padding: var(--space-8) var(--space-4);
+  background-color: var(--color-forest);
+  color: var(--color-cream);
+  text-align: center;
+}
+
+.site-footer p {
+  max-width: none;
+  margin-bottom: var(--space-2);
+  font-size: var(--text-sm);
+}
+
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+======================================== */
+
+@media (max-width: 768px) {
+
+  .story-header {
+    padding: var(--space-12) var(--space-4);
+  }
+
+  .lede {
+    font-size: var(--text-base);
+  }
+
+  section {
+    padding-block: var(--space-8);
+  }
+
+  .story-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .embed-card {
+    padding: var(--space-4);
+  }
+
+  th,
+  td {
+    padding: var(--space-3);
+  }
+}
+
+@media (max-width: 480px) {
+
+  .story-header h1 {
+    font-size: 3rem;
+  }
+
+  .story-subtitle {
+    font-size: var(--text-xl);
+  }
+
+  .figure-card,
+  .trend-figure {
+    padding: var(--space-2);
+  }
+
+  .embed-frame {
+    aspect-ratio: 3 / 2;
+  }
+
+  .data-note {
+    padding: var(--space-3);
+  }
+}
